@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import commander from 'commander';
+import _ from 'lodash';
 const program = commander.program;
 
 program
