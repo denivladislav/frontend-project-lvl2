@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
+import stringify from '../utils/stringify.js'
 
 const parse = (data) => JSON.parse(data);
 
@@ -10,29 +11,33 @@ const genDiff = (filepath1, filepath2) => {
 
   const parsedOldData = parse(oldData);
   const parsedNewData = parse(newData);
-  console.log('!!!!', parsedOldData);
 
   console.log(parsedOldData, typeof(parsedOldData));
   console.log(parsedNewData, typeof(parsedNewData));
 
-  const unsortedKeys = Array.from(new Set([...Object.keys(parsedOldData), ...Object.keys(parsedNewData)]));
-  const keys = unsortedKeys.sort();
-  console.log(keys);
-  const result = keys.map((key) => {
-    if (_.has(parsedOldData, key)) {
-      if (_.has(parsedNewData, key)) {
-        if (parsedOldData[key] === parsedNewData[key]) {
-          return `  ${key}: ${parsedOldData[key]}`;
-        }
-        return `- ${key}: ${parsedOldData[key]}\n+ ${key}: ${parsedNewData[key]}`;
-      }
+  const uniqKeys = Array.from(new Set([...Object.keys(parsedOldData), ...Object.keys(parsedNewData)]));
+  const sortedKeys = uniqKeys.sort();
+  console.log('sortedKeys:', sortedKeys);
+
+  const result = sortedKeys.reduce((acc, key) => {
+    if (!_.has(parsedNewData, key)) {
+      acc[`- ${key}`] = parsedOldData[key];
+      return acc;
     }
-    return `+ ${key}: ${parsedNewData[key]}`;
-  });
-  console.log(result);
-  result.unshift('{');
-  result.push('}');
-  console.log(`${result.join('\n')}`);
+    if (!_.has(parsedOldData, key)) {
+      acc[`+ ${key}`] = parsedNewData[key];
+      return acc;
+    }  
+    if (parsedNewData[key] === parsedOldData[key]) {
+      acc[`  ${key}`] = parsedNewData[key];
+      return acc;
+    }
+    acc[`- ${key}`] = parsedOldData[key];
+    acc[`+ ${key}`] = parsedNewData[key];
+    return acc;
+  }, {});
+
+  console.log(stringify(result));
 }
 
 export default genDiff;
