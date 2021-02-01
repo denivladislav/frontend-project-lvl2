@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
-import stringify from '../utils/stringify.js'
+import stringify from '../utils/stringify.js';
 
 const parse = (data) => JSON.parse(data);
 
@@ -12,11 +12,11 @@ const genDiff = (filepath1, filepath2) => {
   const parsedOldData = parse(oldData);
   const parsedNewData = parse(newData);
 
-  console.log(parsedOldData, typeof(parsedOldData));
-  console.log(parsedNewData, typeof(parsedNewData));
+  console.log(parsedOldData, typeof (parsedOldData));
+  console.log(parsedNewData, typeof (parsedNewData));
 
-  const uniqKeys = Array.from(new Set([...Object.keys(parsedOldData), ...Object.keys(parsedNewData)]));
-  const sortedKeys = uniqKeys.sort();
+  const uniqKeys = new Set([...Object.keys(parsedOldData), ...Object.keys(parsedNewData)]);
+  const sortedKeys = Array.from(uniqKeys).sort();
   console.log('sortedKeys:', sortedKeys);
 
   const result = sortedKeys.reduce((acc, key) => {
@@ -27,7 +27,7 @@ const genDiff = (filepath1, filepath2) => {
     if (!_.has(parsedOldData, key)) {
       acc[`+ ${key}`] = parsedNewData[key];
       return acc;
-    }  
+    }
     if (parsedNewData[key] === parsedOldData[key]) {
       acc[`  ${key}`] = parsedNewData[key];
       return acc;
@@ -38,6 +38,6 @@ const genDiff = (filepath1, filepath2) => {
   }, {});
 
   console.log(stringify(result));
-}
+};
 
 export default genDiff;

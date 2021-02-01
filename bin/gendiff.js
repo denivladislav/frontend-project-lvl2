@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import commander from 'commander';
-import genDiff from '../src/index.js'
+import genDiff from '../src/index.js';
 
-const program = commander.program;
+const { program } = commander;
 
 program
   .arguments('<filepath1> <filepath2>')
