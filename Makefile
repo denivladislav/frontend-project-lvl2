@@ -7,5 +7,8 @@ publish:
 lint:
 	npx eslint .
 
+test:
+	npx -n --experimental-vm-modules jest --watch
+
 gendiff:
 	node bin/gendiff.js
