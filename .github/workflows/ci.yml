@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  - push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: npm install, build
+        run: |
+          make install
+      
+      - name: Run Linter
+        run: |
+          make lint
+
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: 3b9e248f3d5fead69cc010ceb8982f2689b1fab7c9fab1e653054d63aa4f4cfc
+        with:
+          coverageCommand: npm run coverage
+          debug: true
