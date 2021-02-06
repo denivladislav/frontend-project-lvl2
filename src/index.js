@@ -12,12 +12,8 @@ const genDiff = (filepath1, filepath2) => {
   const parsedOldData = parse(oldData);
   const parsedNewData = parse(newData);
 
-  console.log(parsedOldData, typeof (parsedOldData));
-  console.log(parsedNewData, typeof (parsedNewData));
-
   const uniqKeys = new Set([...Object.keys(parsedOldData), ...Object.keys(parsedNewData)]);
   const sortedKeys = Array.from(uniqKeys).sort();
-  console.log('sortedKeys:', sortedKeys);
 
   const result = sortedKeys.reduce((acc, key) => {
     if (!_.has(parsedNewData, key)) {
@@ -38,6 +34,7 @@ const genDiff = (filepath1, filepath2) => {
   }, {});
 
   console.log(stringify(result));
+  return stringify(result);
 };
 
 export default genDiff;
