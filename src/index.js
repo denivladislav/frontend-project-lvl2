@@ -1,35 +1,29 @@
-import fs from 'fs';
-import path from 'path';
 import _ from 'lodash';
 import stringify from '../utils/stringify.js';
-
-const parse = (data) => JSON.parse(data);
+import parse from './parsers.js';
 
 const genDiff = (filepath1, filepath2) => {
-  const oldData = fs.readFileSync(path.resolve(filepath1));
-  const newData = fs.readFileSync(path.resolve(filepath2));
+  const parsedData1 = parse(filepath1);
+  const parsedData2 = parse(filepath2);
 
-  const parsedOldData = parse(oldData);
-  const parsedNewData = parse(newData);
-
-  const uniqKeys = new Set([...Object.keys(parsedOldData), ...Object.keys(parsedNewData)]);
+  const uniqKeys = new Set([...Object.keys(parsedData1), ...Object.keys(parsedData2)]);
   const sortedKeys = Array.from(uniqKeys).sort();
 
   const result = sortedKeys.reduce((acc, key) => {
-    if (!_.has(parsedNewData, key)) {
-      acc[`- ${key}`] = parsedOldData[key];
+    if (!_.has(parsedData2, key)) {
+      acc[`- ${key}`] = parsedData1[key];
       return acc;
     }
-    if (!_.has(parsedOldData, key)) {
-      acc[`+ ${key}`] = parsedNewData[key];
+    if (!_.has(parsedData1, key)) {
+      acc[`+ ${key}`] = parsedData2[key];
       return acc;
     }
-    if (parsedNewData[key] === parsedOldData[key]) {
-      acc[`  ${key}`] = parsedNewData[key];
+    if (parsedData2[key] === parsedData1[key]) {
+      acc[`  ${key}`] = parsedData2[key];
       return acc;
     }
-    acc[`- ${key}`] = parsedOldData[key];
-    acc[`+ ${key}`] = parsedNewData[key];
+    acc[`- ${key}`] = parsedData1[key];
+    acc[`+ ${key}`] = parsedData2[key];
     return acc;
   }, {});
 
