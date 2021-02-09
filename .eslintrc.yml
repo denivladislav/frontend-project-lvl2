@@ -1,4 +1,7 @@
+plugins:
+  - jest
 env:
+  jest/globals: true
   node: true
   es2021: true
 extends:
@@ -11,3 +14,4 @@ rules:
   import/extensions: 0
   no-await-in-loop: 0
   no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
+
