@@ -13,6 +13,6 @@ export default (filepath) => {
     case 'yaml':
       return yaml.load(data);
     default:
-      throw new Error('Unsupported format');
+      throw new Error(`Unsupported file format: ${extname}`);
   }
 };

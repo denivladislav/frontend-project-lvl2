@@ -1,14 +1,12 @@
 import buildDiffTree from '../utils/buildDiffTree.js';
-import makeStylish from '../utils/newStringify.js';
 import parse from './parsers.js';
+import formatise from './formatters/index.js';
 
-const genDiff = (filepath1, filepath2) => {
+const genDiff = (filepath1, filepath2, format) => {
   const parsedData1 = parse(filepath1);
   const parsedData2 = parse(filepath2);
-
   const finalResult = (buildDiffTree(parsedData1, parsedData2));
-  console.log(makeStylish(finalResult));
-  return makeStylish(finalResult);
+  return formatise(finalResult, format);
 };
 
 export default genDiff;
