@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const stringify = (value, replacer = '-|', addSpacesCount, spacesCount = 2) => {
+const stringify = (value, replacer = '-|', addIndentCount) => {
   const iter = (currentValue, depth) => {
     if (currentValue === null) {
       return 'null';
@@ -8,12 +8,13 @@ const stringify = (value, replacer = '-|', addSpacesCount, spacesCount = 2) => {
     if (!_.isObject(currentValue)) {
       return currentValue.toString();
     }
-    const indentSize = depth * spacesCount;
-    let currentIndent = replacer.repeat(indentSize);
-    let bracketIndent = replacer.repeat(indentSize - spacesCount);
-    if (addSpacesCount > 1) {
-      currentIndent += replacer.repeat(addSpacesCount);
-      bracketIndent += replacer.repeat(addSpacesCount);
+    // console.log('VALUE:', value, 'addIndentCount', addIndentCount);
+    const indentSize = depth * addIndentCount;
+    let currentIndent = replacer.repeat(indentSize + 2);
+    let bracketIndent = replacer.repeat(indentSize);
+    if (addIndentCount === 1) {
+      currentIndent += replacer.repeat(indentSize - 2);
+      bracketIndent += replacer.repeat(indentSize - 2);
     }
     const lines = Object
       .entries(currentValue)
