@@ -2,9 +2,15 @@ common:
   setting1: undefined
   names:
     male:
-      young:
-        pop: cat
-        item: 70
+      old:
+        parrot:
+          cow:
+            again: 
+              pop: cat
+              item: 
+                new: 
+                  oh not again: again
+                  oh my: yes
   setting3: goose    
 
 group1:

@@ -3,7 +3,10 @@ common:
   names:
     male:
       old:
-        Johnny: Silverhand
+        parrot:
+          cow:
+            superdeep:
+              Johnny: Silverhand
 
 bandX:
   come on: 
