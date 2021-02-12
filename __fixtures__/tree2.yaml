@@ -1,0 +1,27 @@
+common:
+  setting1: undefined
+  names:
+    male:
+      young:
+        pop: cat
+        item: 70
+  setting3: goose    
+
+group1:
+  woody: woodpecker
+  buzz: buzzard
+  undefined:
+    some more: 
+      some more: 
+        enough: please
+
+bandX:
+  here we go: 
+    not here:
+      not here:
+        here: gotcha2
+
+null:
+  null:
+    null:
+      null: 0

@@ -1,0 +1,59 @@
+{
+    bandX: {
+      - come on: {
+            not here: {
+                not here: {
+                    here: gotcha1
+                }
+            }
+        }
+      + here we go: {
+            not here: {
+                not here: {
+                    here: gotcha2
+                }
+            }
+        }
+    }
+  - can't touch this: {
+        nananana: {
+            nana: nana
+        }
+    }
+    common: {
+        names: {
+            male: {
+              - old: {
+                    Johnny: Silverhand
+                }
+              + young: {
+                    pop: cat
+                    item: 70
+                }
+            }
+        }
+        setting1: undefined
+      + setting3: goose
+    }
+  + group1: {
+        woody: woodpecker
+        buzz: buzzard
+        undefined: {
+            some more: {
+                some more: {
+                    enough: please
+                }
+            }
+        }
+    }
+    null: {
+        null: {
+          - not null: {
+                null: 0
+            }
+          + null: {
+                null: 0
+            }
+        }
+    }
+}

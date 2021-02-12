@@ -1,0 +1,21 @@
+common:
+  setting1: undefined
+  names:
+    male:
+      old:
+        Johnny: Silverhand
+
+bandX:
+  come on: 
+    not here:
+      not here:
+        here: gotcha1
+
+null:
+  null:
+    not null:
+      null: 0        
+
+can't touch this:
+  nananana:
+    nana: nana
