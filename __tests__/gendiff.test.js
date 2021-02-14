@@ -28,20 +28,31 @@ const resultPlainJSON = readFile('resultPlainJSON.diff');
 const resultPlainyml = readFile('resultPlainyml.diff');
 const resultTreeJSON = readFile('resultTreeJSON.diff');
 const resultTreeyaml = readFile('resultTreeyaml.diff');
+const resultTreeFormatPlain = readFile('resultTreeFormatPlain.diff');
 
-test('unsupported format', () => {
+test('unsupported file format', () => {
   expect(() => {
     genDiff(unsupportedFilePath, plain1jJSONPath);
   }).toThrow();
 });
 
-test('plain', () => {
+test('unsupported output format', () => {
+  expect(() => {
+    genDiff(plain1jJSONPath, plain2JSONPath, 'O*Gr');
+  }).toThrow();
+});
+
+test('plain, stylish format', () => {
   expect(genDiff(plain1jJSONPath, plain2JSONPath)).toEqual(resultPlainJSON);
   expect(genDiff(plain1ymlPath, plain2ymlPath)).toEqual(resultPlainyml);
   expect(genDiff(plain1ymlPath, plain2JSONPath)).toEqual(resultPlainJSON);
 });
 
-test('tree', () => {
+test('tree, stylish format', () => {
   expect(genDiff(tree1JSONPath, tree2JSONPath)).toEqual(resultTreeJSON);
   expect(genDiff(tree1yamlPath, tree2yamlPath)).toEqual(resultTreeyaml);
+});
+
+test('tree, plain format', () => {
+  expect(genDiff(tree1JSONPath, tree2JSONPath, 'plain')).toEqual(resultTreeFormatPlain);
 });

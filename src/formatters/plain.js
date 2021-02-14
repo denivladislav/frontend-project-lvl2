@@ -25,7 +25,7 @@ const makePlainTree = (tree) => {
         case 'added':
           return `Property '${pathToRoot}${key}' was added with value: ${stringify(value)}`;
         case 'modified':
-          return `Property '${pathToRoot}${key}' was updated. From: ${stringify(oldValue)} to ${stringify(newValue)}`;
+          return `Property '${pathToRoot}${key}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`;
         case 'unmodified':
           return '';
         case 'nested':
