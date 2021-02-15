@@ -29,6 +29,7 @@ const resultPlainyml = readFile('resultPlainyml.diff');
 const resultTreeJSON = readFile('resultTreeJSON.diff');
 const resultTreeyaml = readFile('resultTreeyaml.diff');
 const resultTreeFormatPlain = readFile('resultTreeFormatPlain.diff');
+const resultTreeFormatJSON = readFile('resultTreeFormatJSON.diff');
 
 test('unsupported file format', () => {
   expect(() => {
@@ -55,4 +56,8 @@ test('tree, stylish format', () => {
 
 test('tree, plain format', () => {
   expect(genDiff(tree1JSONPath, tree2JSONPath, 'plain')).toEqual(resultTreeFormatPlain);
+});
+
+test('tree, JSON format', () => {
+  expect(genDiff(tree1JSONPath, tree2JSONPath, 'json')).toEqual(resultTreeFormatJSON);
 });
