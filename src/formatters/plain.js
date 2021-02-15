@@ -4,10 +4,10 @@ const stringify = (currentValue) => {
   if (currentValue === null) {
     return 'null';
   }
-  if (_.isBoolean(currentValue)) {
-    return currentValue;
-  }
   if (!_.isObject(currentValue)) {
+    if (_.isBoolean(currentValue) || _.isNumber(currentValue)) {
+      return currentValue;
+    }
     return `'${currentValue.toString()}'`;
   }
   return '[complex value]';
