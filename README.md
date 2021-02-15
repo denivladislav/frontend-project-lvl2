@@ -78,6 +78,6 @@ Shows the difference as JSON string.
 [![asciicast](https://asciinema.org/a/MUGMJkvfg8xC6tthA7sSrJt3r.svg)](https://asciinema.org/a/MUGMJkvfg8xC6tthA7sSrJt3r)
 
  ## Credits
-This game bundle was created as my second project during my <a href="https://en.hexlet.io/pages/about">Hexlet</a> "Frontend-developer" education course.
+This utility was created as my second project during my <a href="https://en.hexlet.io/pages/about">Hexlet</a> "Frontend-developer" education course.
 <img  src = "https://pbs.twimg.com/profile_images/1104765658829602816/7wuM7zyo_400x400.png" 
 alt="Hexlet logo" width="400" length="400">
