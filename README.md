@@ -50,7 +50,8 @@ $ make test-coverage
 You may use this utility in order to get difference between either JSON or YAML files.
 
 ```bash
-# Run this command to get difference between two files. Type paths to your files instead of <filepath1> and <filepath2>. 
+# Run this command to get difference between two files. 
+# Type paths to your files instead of <filepath1> and <filepath2>. 
 $ gendiff <filepath1> <filepath2>
 ```
 [![asciicast](https://asciinema.org/a/ehcVMArUl4PEI9eHgMiv51MQd.svg)](https://asciinema.org/a/ehcVMArUl4PEI9eHgMiv51MQd)
@@ -58,7 +59,9 @@ $ gendiff <filepath1> <filepath2>
 ## Output formats
 You may get the difference between two files in several formats.
 ```bash
-# Run this command to get difference between two files. Type the name of format instead of <format>. If you do not type any format, then the default one is chosen ("stylish"). 
+# Run this command to get difference between two files. 
+# Type the name of format instead of <format>. 
+# If you do not type any format, then the default one is chosen ("stylish"). 
 $ gendiff -f <format> <filepath1> <filepath2>
 ```
 
