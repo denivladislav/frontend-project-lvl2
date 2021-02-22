@@ -25,9 +25,9 @@ const makeStylishTree = (tree) => {
   const iter = (nodes, depth = 1, leftIndent = '  ') => (
     nodes.flatMap((node) => {
       const {
-        key, value, status, oldValue, newValue, children,
+        key, value, type, oldValue, newValue, children,
       } = node;
-      switch (status) {
+      switch (type) {
         case 'deleted':
           return `${leftIndent}- ${key}: ${stringify(value, depth)}`;
         case 'added':
@@ -45,7 +45,7 @@ const makeStylishTree = (tree) => {
             ...iter(children, depth + 1, `  ${'    '.repeat(depth)}`),
             `${leftIndent}  }`];
         default:
-          throw new Error(`Unknown status: ${status}`);
+          throw new Error(`Unknown type: ${type}`);
       }
     })
   );
