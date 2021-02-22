@@ -2,24 +2,24 @@ import _ from 'lodash';
 
 const stringify = (currentValue) => {
   if (currentValue === null) {
-    return 'null';
+    return null;
   }
-  if (!_.isObject(currentValue)) {
-    if (_.isBoolean(currentValue) || _.isNumber(currentValue)) {
-      return currentValue;
-    }
-    return `'${currentValue.toString()}'`;
+  if (_.isObject(currentValue)) {
+    return '[complex value]';
   }
-  return '[complex value]';
+  if (_.isString(currentValue)) {
+    return `'${currentValue}'`;
+  }
+  return currentValue;
 };
 
 const makePlainTree = (tree) => {
   const iter = (nodes, pathToRoot = '') => (
     nodes.flatMap((node) => {
       const {
-        key, value, status, oldValue, newValue, children,
+        key, value, type, oldValue, newValue, children,
       } = node;
-      switch (status) {
+      switch (type) {
         case 'deleted':
           return `Property '${pathToRoot}${key}' was removed`;
         case 'added':
@@ -31,12 +31,13 @@ const makePlainTree = (tree) => {
         case 'nested':
           return [...iter(children, `${pathToRoot}${key}.`)];
         default:
-          throw new Error(`Unknown status: ${status}`);
+          throw new Error(`Unknown type: ${type}`);
       }
     })
   );
   const lines = iter(tree);
-  return [...lines.filter((line) => line)].join('\n');
+  const filteredLines = lines.filter((line) => line);
+  return [...filteredLines];
 };
 
-export default makePlainTree;
+export default (diffTree) => makePlainTree(diffTree).join('\n');
