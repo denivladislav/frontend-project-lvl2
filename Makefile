@@ -8,10 +8,10 @@ lint:
 	npx eslint .
 
 test:
-	npx -n --experimental-vm-modules jest
+	NODE_OPTIONS=--experimental-vm-modules npx jest
 
 test-coverage:
-	npx -n --experimental-vm-modules jest --coverage
+	NODE_OPTIONS=--experimental-vm-modules npx jest --coverage
 
 gendiff:
 	node bin/gendiff.js
