@@ -79,6 +79,3 @@ Shows the difference as JSON string.
 
  ## Credits
 This utility was created as my second project during my <a href="https://en.hexlet.io/pages/about">Hexlet</a> "Frontend-developer" education course.
-<a href=https://en.hexlet.io/pages/about>
-  <img src="https://pbs.twimg.com/profile_images/1104765658829602816/7wuM7zyo_400x400.png" alt="Hexlet logo" width="200" length="200">
-</a>
